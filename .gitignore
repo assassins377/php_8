@@ -1,39 +1,25 @@
 ```
-# Environment variables
+# Dependencies
+vendor/
+
+# Environment
 .env
 .env.local
 .env.*
 
-# Dependencies
-vendor/
-composer.lock
-
 # Logs
 *.log
 
-# Temporary files
-*.tmp
-*.swp
-
 # IDE
-.vscode/
-.idea/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Cache
-.cache/
-*.cache
-
-# Coverage
+.php_cs
+.php_cs.dist
+.phpstorm.meta.php
+.scrutinizer.yml
+.styleci.yml
+.travis.yml
+.phpunit.result.cache
 coverage/
-htmlcov/
-.coverage
-
-# Build artifacts
-dist/
-build/
-target/
+.phpunit
+.phpunit.xml
+.phpunit.xml.dist
 ```
