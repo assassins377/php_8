@@ -1,25 +1,39 @@
-# CakePHP 3
+```
+# Environment variables
+.env
+.env.local
+.env.*
 
-/vendor/*
-/config/app.php
+# Dependencies
+vendor/
+composer.lock
 
-/tmp/cache/models/*
-!/tmp/cache/models/empty
-/tmp/cache/persistent/*
-!/tmp/cache/persistent/empty
-/tmp/cache/views/*
-!/tmp/cache/views/empty
-/tmp/sessions/*
-!/tmp/sessions/empty
-/tmp/tests/*
-!/tmp/tests/empty
+# Logs
+*.log
 
-/logs/*
-!/logs/empty
+# Temporary files
+*.tmp
+*.swp
 
-# CakePHP 2
+# IDE
+.vscode/
+.idea/
 
-/app/tmp/*
-/app/Config/core.php
-/app/Config/database.php
-/vendors/*
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache/
+*.cache
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Build artifacts
+dist/
+build/
+target/
+```
