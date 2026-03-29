@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Security Headers (also set by middleware) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;">
+    
+    <title>{% block title %}{{ config('app.name', 'Secure Blog') }}{% endblock %}</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    
+    {% block head %}{% endblock %}
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- Navigation -->
+    {% include 'partials/navbar.twig' %}
+    
+    <!-- Main Content -->
+    <main class="flex-grow-1 py-4">
+        <div class="container">
+            {% block breadcrumbs %}{% endblock %}
+            
+            {% with messages = app.session.flash.get('success') %}
+                {% if messages is not empty %}
+                    {% for message in messages %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            {% with messages = app.session.flash.get('error') %}
+                {% if messages is not empty %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    {% include 'partials/footer.twig' %}
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>
