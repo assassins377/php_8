@@ -35,6 +35,8 @@ use App\Middleware\SecurityHeadersMiddleware;
 use App\Middleware\SessionMiddleware;
 use App\Middleware\CsrfMiddleware;
 use App\Middleware\AuthMiddleware;
+use Twig\TwigFunction;
+use Twig\Extension\AbstractExtension;
 
 // Load environment variables
 $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
@@ -44,7 +46,6 @@ $dotenv->load();
 Config::load(__DIR__ . '/..');
 
 // Create app
-AppFactory::setContainer(null);
 $app = AppFactory::create();
 
 // Add routing middleware
@@ -64,16 +65,11 @@ $app->add(new AuthMiddleware());
 
 // Set up Twig view
 $viewPath = __DIR__ . '/../templates';
-\Twig\Loader\FilesystemLoader::MAIN_NAMESPACE = 'main';
 $view = Twig::create($viewPath, [
     'cache' => __DIR__ . '/../storage/cache/twig',
     'auto_reload' => true,
     'debug' => Config::get('app.debug', false),
 ]);
-
-// Add Twig extension for CSRF token
-$view->getExtension(\Twig\Extension\CoreExtension::class)
-    ->setTimezone('UTC');
 
 // Add Twig to container via request attribute
 $app->add(TwigMiddleware::create($app, $view));

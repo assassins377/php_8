@@ -4,7 +4,7 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": "^8.4",
+        "php": "^8.2",
         "slim/slim": "^4.12",
         "slim/psr7": "^1.6",
         "slim/twig-view": "^3.3",
